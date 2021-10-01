@@ -40,7 +40,35 @@
             </div>
           </nav>
           
-        
+          <div class="main">
+			<div class="card" id="loginDiv">
+				<div class="card-body mb-3">
+					<h2 class="centerDiv"> Sign in to your account </h2>
+					<br>
+					<!-- Use your own onsubmit function -->
+					<form method="POST" onsubmit="return logIn()" id="logInForm">
+						<div class="form-floating">
+						    <input type="email" class="form-control" id="userEmail" aria-describedby="userEmail" placeholder="Enter email" required>
+							<label for="userEmail">Email</label>
+						</div>
+						<br>
+						<div class="form-floating">
+						    <input type="password" class="form-control" id="userPass" aria-describedby="userPass" placeholder="Enter password" required>
+							<label for="userPass">Password</label>
+						</div>
+						<br>
+						<div class="centerDiv mt-4 d-grid gap-2">
+							<button type="submit" class="btn btn-primary">Sign in</button>
+							<a>Or</a>
+						</div>
+						<div class="centerDiv mt-2">
+							<a href="./registerPage.html" class="link-primary fs-6 alignLeft">Create an account</a>
+							<a href="./retrievePassword.html" class="link-primary fs-6 alignRight">Retrieve password</a>
+						</div>
+					</form>				
+				</div>
+			</div>	
+		</div>
 
 
 	</body>
