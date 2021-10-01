@@ -9,11 +9,18 @@ function signUp() {
     pwdSuccess = validatePassword();
     phoneSuccess = validatePhone();
     pwdMatchSuccess = validateConfirmPassword();
+    emailMatchSuccess = validateConfirmEmail();
     //success = false
+    var email = document.getElementById("userEmail").value
+    if (localStorage.getItem(email) != undefined) {
+        alert("Mail is already registered!")
+        return false
+    }
+
+    // CHECK MAIL DUPLICATEgi
     
-    if (pwdSuccess && phoneSuccess && pwdMatchSuccess) {
+    if (pwdSuccess && phoneSuccess && pwdMatchSuccess && emailMatchSuccess) {
         alert("Success: You are now registered!")
-        let email = document.getElementById("userEmail").value
         let pwd = document.getElementById("userPass").value
         localStorage.setItem(email, pwd)
         document.getElementById("myForm").reset()
@@ -38,6 +45,15 @@ function validateConfirmPassword() {
     //Password 8 char and 1 special
     if (document.getElementById("userPass").value != document.getElementById("userPassConfirm").value) {
         alert("Passwords not matching")
+        return false
+    }
+    return true
+}
+
+function validateConfirmEmail() {
+    //Password 8 char and 1 special
+    if (document.getElementById("userEmail").value != document.getElementById("userEmailConfirm").value) {
+        alert("Emails not matching")
         return false
     }
     return true
@@ -76,6 +92,7 @@ function logIn() {
     else if (pwd == loginDetails) {
         alert("Wohooo you logged in!")
         document.getElementById("logInForm").reset()
+        localStorage.setItem(userEmail+"lockout", 0)
     }
     else {
         alert("Email or password incorrect")
