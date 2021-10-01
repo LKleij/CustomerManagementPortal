@@ -83,3 +83,8 @@ function logIn() {
     }
     return false
 }
+
+function retrievePassword() {
+    alert(localStorage.getItem(document.getElementById("userEmail").value))
+    return false
+}
