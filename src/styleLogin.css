@@ -14,6 +14,7 @@ html {
   	-moz-background-size: cover;
   	-o-background-size: cover;
   	background-size: cover;
+  	overflow: hidden;
 }
 
 div {
@@ -26,10 +27,24 @@ div {
 }
 
 .card {
-	width: 400px;
+	width: 410px;
 	border-radius: 2.5%;
 }
 
 .centerDiv {
 	text-align: center;
+}
+
+.navbarMargLeft {
+	margin-left: 15px;
+}
+
+.alignLeft {
+	float: left;
+	margin-left: 15px;
+}
+
+.alignRight {
+	float: right;
+	margin-right: 15px;
 }
