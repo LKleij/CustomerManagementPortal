@@ -19,7 +19,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Link</a>
@@ -44,8 +44,7 @@
           <div class="main">
 			<div class="card" id="loginDiv">
 				<div class="card-body mb-3">
-					<h2 class="centerDiv"> Sign in to your account </h2>
-					<br>
+					<h3 class="centerDiv mb-4"> Sign in to your account </h3>
 					<!-- Use your own onsubmit function -->
 					<form method="POST" onsubmit="return logIn()" id="logInForm">
 						<div class="form-floating">
@@ -57,12 +56,11 @@
 						    <input type="password" class="form-control" id="userPass" aria-describedby="userPass" placeholder="Enter password" required>
 							<label for="userPass">Password</label>
 						</div>
-						<br>
-						<div class="centerDiv mt-4 d-grid gap-2">
+						<div class="centerDiv mt-5 d-grid gap-2">
 							<button type="submit" class="btn btn-primary">Sign in</button>
 							<a>Or</a>
 						</div>
-						<div class="centerDiv mt-2">
+						<div class="centerDiv">
 							<a href="./retrievePassword.html" class="link-primary fs-6">Retrieve password</a>
 						</div>
 					</form>				
