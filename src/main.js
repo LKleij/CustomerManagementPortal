@@ -62,7 +62,8 @@ function lockOut() {
 }
 
 function logIn() {
-    let loginDetails = localStorage.getItem('alexander.lofstrand@tcs.com');
+    let userEmail = document.getElementById("userEmail").value
+    let loginDetails = localStorage.getItem(userEmail);
     let pwd = document.getElementById("userPass").value
     if (pwd == loginDetails) {
         alert("Wohooo you logged in!")
