@@ -8,10 +8,10 @@ var credentials = {}
 function signUp() {
     pwdSuccess = validatePassword();
     phoneSuccess = validatePhone();
-    pwdSuccess = validateConfirmPassword();
+    pwdMatchSuccess = validateConfirmPassword();
     //success = false
     
-    if (pwdSuccess && phoneSuccess) {
+    if (pwdSuccess && phoneSuccess && pwdMatchSuccess) {
         alert("Success: You are now registered!")
         let email = document.getElementById("userEmail").value
         let pwd = document.getElementById("userPass").value
@@ -56,19 +56,30 @@ function validatePhone() {
     }
 }
 
-function lockOut() {
+function lockOut(email) {
     // Check if same userId has been attempted x amount of times login
-    x = 3
+    var n = localStorage.getItem(email+"lockout")
+    if (n == undefined) n = 0 // Default value
+    localStorage.setItem(email+"lockout", parseInt(n) + 1)
+    if (parseInt(n) + 1 == 3) {
+        alert("Account now locked :(")
+        return true
+    }
+    return false
 }
 
 function logIn() {
     let userEmail = document.getElementById("userEmail").value
     let loginDetails = localStorage.getItem(userEmail);
     let pwd = document.getElementById("userPass").value
-    if (pwd == loginDetails) {
+    if (parseInt(localStorage.getItem(userEmail+"lockout")) >= 3) alert("Account is locked.")
+    else if (pwd == loginDetails) {
         alert("Wohooo you logged in!")
         document.getElementById("logInForm").reset()
     }
-    else alert("Email or password incorrect")
+    else {
+        alert("Email or password incorrect")
+        lockOut(userEmail)
+    }
     return false
 }
