@@ -8,15 +8,15 @@ var credentials = {}
 function signUp() {
     pwdSuccess = validatePassword();
     phoneSuccess = validatePhone();
+    pwdSuccess = validateConfirmPassword();
     //success = false
     
     if (pwdSuccess && phoneSuccess) {
         alert("Success: You are now registered!")
         let email = document.getElementById("userEmail").value
-        let pwd = document.getElementById("userPassword").value
-        credentials[email] = pwd
-        document.getElementById("regform").reset();
-        //redirect to login page
+        let pwd = document.getElementById("userPass").value
+        localStorage.setItem(email, pwd)
+        document.getElementById("myForm").reset()
     }
 
     return false
@@ -34,6 +34,15 @@ function validatePassword() {
     return true
 }
 
+function validateConfirmPassword() {
+    //Password 8 char and 1 special
+    if (document.getElementById("userPass").value != document.getElementById("userPassConfirm").value) {
+        alert("Passwords not matching")
+        return false
+    }
+    return true
+}
+
 function validatePhone() {
     console.log("Validating phone")
     // Approve + - and numbers
@@ -45,13 +54,20 @@ function validatePhone() {
         alert("Please format your phone number correctly")
         return false
     }
-
-
-
-
 }
 
 function lockOut() {
     // Check if same userId has been attempted x amount of times login
     x = 3
+}
+
+function logIn() {
+    let loginDetails = localStorage.getItem('alexander.lofstrand@tcs.com');
+    let pwd = document.getElementById("userPass").value
+    if (pwd == loginDetails) {
+        alert("Wohooo you logged in!")
+        document.getElementById("logInForm").reset()
+    }
+    else alert("Email or password incorrect")
+    return false
 }

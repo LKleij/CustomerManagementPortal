@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 		<link rel="stylesheet" href="styleRegister.css">
+		<script src="main.js"></script>
 	</head>
 	<body>
 		<div class="main">
@@ -16,7 +17,7 @@
 					<h2 class="centerDiv"> Create account for Ready2Go </h2>
 					<br>
 					<!-- Use your own onsubmit function -->
-					<form method="POST"  onsubmit="return signUp()" id="myForm">
+					<form method="POST" onsubmit="return signUp()" id="myForm">
 						<div class="row g-1">
 							<div class="form-group col-md-6">
 							    <input type="text" class="form-control" id="userFirstName" aria-describedby="userFirstName" placeholder="Enter your first name" required>
@@ -60,7 +61,7 @@
 							<button type="submit" class="btn btn-primary">Create Account</button>
 						</div>
 						<div class="centerDiv mt-2">
-							<a href="#" class="link-primary fs-6">Or sign in here</a>
+							<a href="./loginPage.html" class="link-primary fs-6">Or sign in here</a>
 						</div>
 					</form>				
 				</div>
