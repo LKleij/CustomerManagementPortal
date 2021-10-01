@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<!-- Use your own script name -->
+	<script src="scripts.js"></script>
+	</head>
+	<body>
+		<h1> Customer Registration </h1>
+		<hr>
+		<div id="registerDiv">
+			<!-- Use your own onsubmit function -->
+			<form id="registerForm" onsubmit="return validateRegistration()" method="POST">
+				<fieldset>
+					<table id="registerTable">
+						<tr>
+							<td><label for="firstName">First name</label></td>
+							<td><input type="text" id="firstName" name="firstName" required></td>
+						</tr>
+						<tr>
+							<td><label for="lastName">Last name</label></td>
+							<td><input type="text" id="lastName" name="lastName" required></td>
+						</tr>
+						<tr>
+							<td><label for="contactNum">Contact number</label></td>
+							<td><input type="text" id="contactNum" name="contactNum" required></td>
+						</tr>
+						<tr>
+							<td><label for="Address">Address</label></td>
+							<td><input type="text" id="Address" name="Address" required></td>
+						</tr>
+						<tr><td><br></td></tr>
+						<tr>
+							<td><label for="email">Email</label></td>
+							<td><input type="email" id="email" name="email" required></td>
+						</tr>
+						<tr>
+							<td><label for="emailConfirm">Confirm email</label></td>
+							<td><input type="email" id="emailConfirm" name="emailConfirm" required></td>
+						</tr>
+						<tr><td><br></td></tr>
+						<tr>
+							<td><label for="pass">Password</label></td>
+							<td><input type="password" id="pass" name="pass" required></td>
+						</tr>
+						<tr>
+							<td><label for="passConfirm">Confirm password</label></td>
+							<td><input type="password" id="passConfirm" name="passConfirm" required></td>
+						</tr>
+						<tr><td><br></td></tr>
+						<tr>
+							<td colspan="2" style="text-align:center">
+								<input type="submit" id="submit" value="Submit">
+								<button id="Cancel" type="button">Cancel</button>
+							</td>
+						</tr>
+					</table>
+				</fieldset>
+			</form>
+		</div>
+	</body>
+</html>
