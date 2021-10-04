@@ -1,0 +1,65 @@
+
+create table TBL_CATEGORY
+(
+	categoryid integer primary key
+	categoryname varchar(50),
+	categoryrate numeric(8, 2),
+);
+
+create table TBL_CAR
+(
+	carregistrationnumber varchar(10) primary key,
+	carbrand varchar(20),
+	carmodelname varchar(20),
+	carseatcapacity integer,
+	categoryid integer references TBL_CATEGORY(categoryid)
+);
+
+create table TBL_DRIVER
+(
+	drivername varchar(50),
+	drivercontactnumber varchar(20),
+	driverlicensenumber varchar(20) primary key,
+	driverstatus varchar(20),
+	carregistrationnumber varchar(10) references TBL_CAR(carregistrationnumber),
+	constraint chk_status_driver check (driverstatus in ('available', 'unavailable'))	
+);
+ALTER TABLE Tbl_driver 
+ADD CONSTRAINT driveruniqueconstraint UNIQUE(carregistrationnumber);
+
+create table TBL_CUSTOMER
+(
+	customerid integer primary key generated always as identity (start with 1000, increment by 1),
+	customername varchar(50),
+	customercontactnumber varchar(20),
+	customeraddress varchar(50),
+	customeremailid varchar(50),
+	customerpassword varchar(50)
+);
+
+create table TBL_BOOKING
+(
+	bookingid integer primary key generated always as identity (start with 1, increment by 1),
+	customerid integer references TBL_CUSTOMER(customerid),
+	carregistrationnumber varchar(10) references TBL_CAR(carregistrationnumber),
+	kilometersdriven numeric(8, 2)
+);
+
+
+insert into TBL_CATEGORY values('economy', 100.00, 1);
+insert into TBL_CATEGORY values('premium', 200.00, 2);
+insert into TBL_CATEGORY values('luxury', 300.00, 3);
+insert into TBL_CATEGORY values('fixedrate', 500.50, 0);
+
+insert into TBL_CAR values('abc123', 'volvo', 'bad model', 6, 1);
+insert into TBL_CAR values('oki007', 'bmw', 'good model', 1, 2);
+insert into TBL_CAR values('elonwins', 'tesla', 'verysuper', 5, 3);
+
+insert into TBL_DRIVER values('stefan pauck', '45789123987', 'poelsemedoel', 'available', 'elonwins');
+insert into TBL_DRIVER values('namrata', '785789123987', '8912314', 'unavailable', 'oki007');
+
+insert into TBL_CUSTOMER (customername, customercontactnumber, customeraddress, customeremailid, customerpassword)
+values ('priyanka', '08147920', 'switzerlandorindia', 'priyanka@tcs.com', 'mytraineesrock');
+
+insert into tbl_booking (customerid, carregistrationnumber, kilometersdriven)
+values (1000, 'elonwins', 100.86);
