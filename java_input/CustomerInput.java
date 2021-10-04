@@ -63,6 +63,12 @@ public class CustomerInput {
 	
 	public static boolean nameValidator(String name) {
 		boolean nameCheck = true;
+		Pattern pattern = Pattern.compile("[\d+]");
+		Matcher m = pattern.matcher(name);
+		if(m) {
+			nameCheck = false;
+			System.out.println("Invalid input, no numbers allowed in names!");
+		}
 		if(name.length() < 1) {
 			nameCheck = false;
 			System.out.println("Invalid input, the field is empty!");
