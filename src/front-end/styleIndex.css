@@ -13,10 +13,25 @@
 	margin-right: 10px;
 }
 
+.main2 {
+	margin: 0;
+	position: absolute;
+	top: 20%;
+	left: 50%;
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.centerText {
+	text-align: center;
+}
 .main {
 	margin: 0;
 	position: absolute;
-	top: 50%;
+	top: 60%;
 	left: 50%;
 	-ms-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
