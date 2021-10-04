@@ -63,7 +63,7 @@ public class CustomerInput {
 	
 	public static boolean nameValidator(String name) {
 		boolean nameCheck = true;
-		Pattern pattern = Pattern.compile("[\d+]");
+		Pattern pattern = Pattern.compile("[\d]+");
 		Matcher m = pattern.matcher(name);
 		if(m) {
 			nameCheck = false;
