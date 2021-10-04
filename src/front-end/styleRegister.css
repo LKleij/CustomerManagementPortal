@@ -21,6 +21,11 @@ html {
 	margin-left: 10px;
 }
 
+.btnMarginRight {
+	margin-right: 10px;
+}
+
+
 div {
 	opacity: .95;
 }

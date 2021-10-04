@@ -17,6 +17,11 @@ html {
   	overflow: hidden;
 }
 
+.btnMarginRight {
+	margin-right: 10px;
+}
+
+
 div {
 	opacity: .95;
 }

@@ -9,6 +9,10 @@
     height: 50px;
 }
 
+.btnMarginRight {
+	margin-right: 10px;
+}
+
 .main {
 	margin: 0;
 	position: absolute;
