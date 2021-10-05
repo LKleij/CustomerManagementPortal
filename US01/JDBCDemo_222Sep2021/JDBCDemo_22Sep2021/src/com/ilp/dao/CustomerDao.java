@@ -11,34 +11,37 @@ import java.util.List;
 import com.ilp.bean.Customer;
 
 public class CustomerDao {
+	public static final String JDBC_URL = "jdbc:derby:C:\\Users\\2072301\\MyDB;create=true";
+	public static final String USERNAME ="test";
+	public static final String PASSWORD ="test";
 	
-	public static final String JDBC_URL="jdbc:derby:C:\\Users\\1260655\\MyDB17Sep2021;create=true";
-	public static final String USERNAME="test";
-	public static final String PASSWORD="test";
 	
-	public Connection con=null;
-	public ResultSet rs=null;
+	public Connection con = null;
+	public ResultSet rs = null;
 	
 	public boolean registerCustomer(Customer customer){
 		
 		try{
 			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-			con= DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+			con = DriverManager.getConnection(JDBC_URL, USERNAME,PASSWORD);
 			
-			String insertQuery="insert into tbl_customer values(?,?,?,?)";
-			PreparedStatement ps= con.prepareStatement(insertQuery);
+			String insertQuery = "insert into TBL_CUSTOMER (customername, customercontactnumber, customeraddress, customeremailid, customerpassword) values (?,?,?,?,?)";
+			PreparedStatement ps = con.prepareStatement(insertQuery);
 			
-			ps.setInt(1, customer.getCustomerId());
-			ps.setString(2, customer.getCustomerName());
-			ps.setInt(3, customer.getAge());
-			ps.setString(4, customer.getCity());
+			ps.setString(1, customer.getName());
+			ps.setString(2, customer.getContactNumber());
+			ps.setString(3, customer.getAddress());
+			ps.setString(4, customer.getEmail());
+			ps.setString(5, customer.getPassword());
+
+
 			
-			int count=ps.executeUpdate();
+			int count = ps.executeUpdate();
 			
-			if(count>0){
+			if (count>0){
 				return true;
+				
 			}
-			
 		}
 		catch(ClassNotFoundException | SQLException e){
 			System.out.println(e.getMessage());
@@ -47,17 +50,17 @@ public class CustomerDao {
 			System.out.println(ex.getMessage());
 		}
 		finally{
-			if(con!=null){
+			if (con != null){
 				try {
 					con.close();
-				} catch (SQLException e) {
-					
-					e.printStackTrace();
 				}
-			
+				catch(SQLException e){
+					e.printStackTrace();
+					
+				}
+				
+			}
 		}
-		}
-		
 		
 		
 		return false;
@@ -65,70 +68,68 @@ public class CustomerDao {
 	}
 	
 	
-	public List<Customer> searchCustomersByCity(String city){
-		
-		List<Customer> customers= new ArrayList<Customer>();
+	
+	public List<Customer> getCustomerslist(){
+		List<Customer> customers = new ArrayList<Customer>();
 		
 		try{
+			System.out.println("safasfsafas1");
+			System.out.println(con);
+			
+
 			Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
-			con= DriverManager.getConnection(JDBC_URL, USERNAME, PASSWORD);
+			con = DriverManager.getConnection(JDBC_URL, USERNAME,PASSWORD);
+
+			System.out.println("safasfsafas2");
 			
-			String selectQuery="select * from tbl_customer where city=?";
-			PreparedStatement ps= con.prepareStatement(selectQuery);
+			String selectQuery = "select * from TBL_CUSTOMER";
+			PreparedStatement ps = con.prepareStatement(selectQuery);
 			
 			
-			ps.setString(1, city);
-			rs=ps.executeQuery();
+			
+			rs = ps.executeQuery();
+			System.out.println("safasfsafas");
 			
 			while(rs.next()){
 				
-				Customer customer= new Customer();
-				customer.setCustomerId(rs.getInt("CUSTOMERID"));
-				customer.setCustomerName(rs.getString("CUSTOMERNAME"));
-				customer.setAge(rs.getInt("AGE"));
-				customer.setCity(rs.getString("CITY"));
+				Customer customer = new Customer();
+				customer.setPassword(rs.getString("CUSTOMERPASSWORD"));
+				customer.setName(rs.getString("CUSTOMERNAME"));
+				customer.setContactNumber(rs.getString("CUSTOMERCONTACTNUMBER"));
+				customer.setAddress(rs.getString("CUSTOMERADDRESS"));
+				customer.setEmail(rs.getString("CUSTOMEREMAILID"));
+
 				
 				customers.add(customer);
 				
-				
 			}
-			
-		
-			
+		System.out.println("length in dao is : " + customers.size());
 		}
 		catch(ClassNotFoundException | SQLException e){
 			System.out.println(e.getMessage());
+			System.out.println("catched1?");
 		}
 		catch(Exception ex){
 			System.out.println(ex.getMessage());
-		}
-		finally{
-			if(con!=null){
-				try {
-					con.close();
-				} catch (SQLException e) {
-					
-					e.printStackTrace();
-				}
+			System.out.println("catched?");
 			
 		}
+		finally{
+			if (con != null){
+				try {
+					con.close();
+				}
+				catch(SQLException e){
+					e.printStackTrace();
+					
+				}
+				
+			}
 		}
-		
+		System.out.println("printing size "+ customers.size());
 		return customers;
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }
+
