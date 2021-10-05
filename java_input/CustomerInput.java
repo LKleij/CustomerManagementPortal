@@ -11,58 +11,65 @@ public class CustomerInput {
 		boolean nameIsCorrect, numberIsCorrect, addressIsCorrect, emailIsCorrect;
 		Scanner inputScanner = new Scanner(System.in);
 		
-		while (true) {
+		boolean nameIsCorrect = false, numberIsCorrect = false, 
+				addressIsCorrect = false, emailIsCorrect = false;
+		Scanner inputScanner = new Scanner(System.in);
+		String name = null, contactNumber = null, address = null, email = null;
+		
+		while (!nameIsCorrect) {
 			System.out.println("Enter your name");
-			String name = inputScanner.nextLine();
+			name = inputScanner.nextLine();
 			nameIsCorrect = nameValidator(name);
-			if (!nameIsCorrect)
-				break;
-			
-			System.out.println("Enter your contact number");
-			String contactNumber = inputScanner.nextLine();
-			numberIsCorrect = contactNumberValidator(contactNumber);
-			if(!numberIsCorrect)
-				break;
-			
-			System.out.println("Enter your address");
-			String address = inputScanner.nextLine();
-			addressIsCorrect = nameValidator(address);
-			if(!addressIsCorrect)
-				break;
-			
-			System.out.println(
-					"If you have an email ID, plase enter it here. " + 
-					"\n if you do not have one, please press N");
-			String email = inputScanner.nextLine();
-			
-			if (email == "N") {
-				System.out.println("Registering without email");
-				System.out.println("Registered with following information: " 
-									+ "\nName:" + name + "\nContact Number:"  
-									+	contactNumber + "\nAddress:" + address
-									);
-				break;
-			} else {
-				emailIsCorrect = emailValidator(email);
-				
-				if(!emailIsCorrect)
-					break;
-				
-				System.out.println("Registering with email");
-				System.out.println("Registered with following information: " 
-						+ "\nName:" + name + "\nContact Number:"  
-						+	contactNumber + "\nAddress:" + address + "\nEmail:" + email
-						);
-				inputScanner.close();
-				break;
-			} 
 		}
+		
+		while(!numberIsCorrect) {
+			System.out.println("Enter your contact number");
+			contactNumber = inputScanner.nextLine();
+			numberIsCorrect = contactNumberValidator(contactNumber);
+		}
+		
+		
+		while(!addressIsCorrect) {
+			System.out.println("Enter your address");
+			address = inputScanner.nextLine();
+			addressIsCorrect = nameValidator(address);
+		}
+		
+		System.out.println(
+				"If you have an email ID, plase enter it here. " + 
+				"\n if you do not have one, please press N");
+			email = inputScanner.nextLine();
+		
+		if (email == "N") {
+			System.out.println("Registering without email");
+			System.out.println("Registered with following information: " 
+								+ "\nName:" + name + "\nContact Number:"  
+								+	contactNumber + "\nAddress:" + address
+								);
+		} else {
+			emailIsCorrect = emailValidator(email);
+			
+			if(!emailIsCorrect)
+			
+			System.out.println("Registering with email");
+			System.out.println("Registered with following information: " 
+					+ "\nName:" + name + "\nContact Number:"  
+					+	contactNumber + "\nAddress:" + address + "\nEmail:" + email
+					);
+			inputScanner.close();
+		} 
 		
 
 	}
 	
 	public static boolean nameValidator(String name) {
 		boolean nameCheck = true;
+		Pattern pattern = Pattern.compile("[^a-ö]+");
+		Matcher m = pattern.matcher(name);
+		if(m.matches()) {
+			nameCheck = false;
+			System.out.println("Invalid input, no numbers allowed in names!");
+		}
 		if(name.length() < 1) {
 			nameCheck = false;
 			System.out.println("Invalid input, the field is empty!");
