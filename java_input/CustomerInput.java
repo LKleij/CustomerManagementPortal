@@ -64,9 +64,9 @@ public class CustomerInput {
 	
 	public static boolean nameValidator(String name) {
 		boolean nameCheck = true;
-		Pattern pattern = Pattern.compile("[\d]+");
+		Pattern pattern = Pattern.compile("[^a-ö]+");
 		Matcher m = pattern.matcher(name);
-		if(m) {
+		if(m.matches()) {
 			nameCheck = false;
 			System.out.println("Invalid input, no numbers allowed in names!");
 		}
