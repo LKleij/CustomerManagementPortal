@@ -8,17 +8,15 @@ import com.ilp.dao.CustomerDao;
 public class CustomerService {
 	
 	public static boolean registerCustomer(Customer customer){
-		
-		CustomerDao dao= new CustomerDao();
+		CustomerDao dao = new CustomerDao();
 		
 		return dao.registerCustomer(customer);
+		
 	}
 	
-	public static List<Customer> searchCustomersByCity(String city){
-		
-		CustomerDao dao= new CustomerDao();
-		return dao.searchCustomersByCity(city);
-		
+	public static List<Customer> getCustomerslist( ){
+		CustomerDao dao = new CustomerDao();
+		return dao.getCustomerslist();
 	}
 
 }
