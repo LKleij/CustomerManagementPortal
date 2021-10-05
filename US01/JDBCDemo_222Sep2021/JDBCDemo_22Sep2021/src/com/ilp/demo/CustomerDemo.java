@@ -8,49 +8,43 @@ import com.ilp.service.CustomerService;
 public class CustomerDemo {
 	
 	public static void main(String[] args) {
+		Customer c1 = new Customer("1","Adam Henry", "34", "Chicago","haha@email.com");
+		Customer c2 = new Customer("2","Adam ", "35", "Ch","1haha@email.com");
+		Customer c3 = new Customer("3","Henry", "33", "ago","2haha@email.com");
+		Customer c4 = new Customer("4","Adam ", "30", "Chic","3haha@email.com");
 		
-		Customer customer1= new Customer(11,"Adam Henry", 34, "Chicago");
 		
-		System.out.println("Customer Registration status");
+		System.out.println("Customer registration status");
+		System.out.println(CustomerService.registerCustomer(c1));
+		System.out.println(CustomerService.registerCustomer(c2));
+		System.out.println(CustomerService.registerCustomer(c3));
+		System.out.println(CustomerService.registerCustomer(c4));
+	
+		List<Customer> customers = CustomerService.getCustomerslist();
+		for (Customer cust : customers){
+			System.out.println(cust.getName());
+		}
+
 		
-		System.out.println(CustomerService.registerCustomer(customer1));
+//		String address = "ago";
+//		System.out.println("Search customers in Address" + address);
+//		List<Customer> customers = CustomerService.searchCustomerByAddress(address);
 		
-		Customer customer2= new Customer(12,"Brian Henry", 32, "Denver");
-		
-		System.out.println("Customer Registration status");
-		
-		System.out.println(CustomerService.registerCustomer(customer2));
-		
-		Customer customer3= new Customer(13,"Craig Henry", 34, "Cincinnati");
-		
-		System.out.println("Customer Registration status");
-		
-		System.out.println(CustomerService.registerCustomer(customer3));
-		
-		Customer customer4= new Customer(14,"Don Henry", 35, "Chicago");
-		
-		System.out.println("Customer Registration status");
-		
-		System.out.println(CustomerService.registerCustomer(customer4));
-		
-//		String city="Denver";
-		
-//		System.out.println("Search customers in city "+ city);
-//		
-//		List<Customer> customers=CustomerService.searchCustomersByCity(city);
-//		
 //		if(customers.size()>0){
-//			for(Customer customer: customers){
-//				
+//			for (Customer customer: customers){
 //				System.out.println(customer.getCustomerId());
-//				System.out.println(customer.getCustomerName());
-//				System.out.println(customer.getAge());
-//				System.out.println(customer.getCity());
+//				System.out.println(customer.getName());
+//				System.out.println(customer.getContactNumber());
+//				System.out.println(customer.getAddress());
+//				System.out.println(customer.getemail());
 //			}
 //		}
+		
 //		else{
-//			System.out.println("No records found");
+//			System.out.println("No found");
 //		}
+		
+		
 		
 	}
 
